@@ -1,6 +1,6 @@
 services:
   minecraft:
-    image: rs235/minecraft:1.0.0
+    image: ${MINECRAFT_IMAGE}
     stdin_open: true
     tty: true
     environment:
@@ -8,5 +8,5 @@ services:
     ports:
       - 25565:25565/tcp
     volumes:
-      - /home/rs/Docker/minecraft/server:/data
+      - ${MINECRAFT_DATA}:/data
     restart: always

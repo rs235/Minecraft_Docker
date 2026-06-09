@@ -23,12 +23,12 @@ COPY --from=download /downloads /opt/minecraft
 EXPOSE 25565
 
 # Copy eula script to /opt/minecraft.
-COPY eula.sh /eula.sh
+COPY start.sh /start.sh
 
 # Make eula.sh script executable.
-RUN chmod +x /eula.sh
+RUN chmod +x /start.sh
 
 # Set entrypoint to eula.sh which sets EULA based on EULA= enironmental variable and starts the server when executed.
-ENTRYPOINT ["/eula.sh"]
+ENTRYPOINT ["/start.sh"]
 
 # CMD is located in eula.sh that ENTRYPOINT points to.
