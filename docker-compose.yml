@@ -1,0 +1,12 @@
+services:
+  minecraft:
+    image: rs235/minecraft:1.0.0
+    stdin_open: true
+    tty: true
+    environment:
+      - EULA=TRUE
+    ports:
+      - 25565:25565/tcp
+    volumes:
+      - /home/rs/Docker/minecraft/server:/data
+    restart: always
