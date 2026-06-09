@@ -23,3 +23,4 @@ RUN chmod +x /eula.sh
 ENTRYPOINT ["/eula.sh"]
 
 # CMD is located in eula.sh that ENTRYPOINT points to.
+# Dupa
