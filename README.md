@@ -18,12 +18,12 @@ docker build -f Dockerfile -t image:tag .
 ##### Example docker run command
 ``` bash
 docker run \
--it \ # Interactive mode to see and interact with server console.
---rm \ # Remove container after stopping.
--v /server/data/location/of/your/choice:/data \ # Bind mount local filesystem directory to server's data directory for easy access to world files.
--e EULA=[TRUE/FALSE] \ # Accept or reject EULA. Will start only when EULA=TRUE.
--p 25565:PORT \ # Publish server port.
-image:tag # Name and tag of the built Docker image.
+-it \
+--rm \
+-v /home/user/Minecraft/data:/data \
+-e EULA=TRUE \
+-p 25565:25565 \
+image:tag
 ```
 
 #### Option 2: Docker compose
@@ -35,7 +35,7 @@ Docker Compose depends on a local .env file to:
 
 ##### .env file template:
 ```
-MINECRAFT_DATA=/absolute/path/to/server/data/location/on/your/machine
+MINECRAFT_DATA=/home/user/Minecraft/data
 MINECRAFT_IMAGE=image:tag
 ```
 
