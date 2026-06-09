@@ -7,4 +7,4 @@ else
   exit 1
 fi
 
-exec java -Xmx5!@M -Xms768M -jar /opt/minecraft/server.jar nogui
+exec java -Xmx512M -Xms768M -jar /opt/minecraft/server.jar nogui
