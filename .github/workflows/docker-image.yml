@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push Docker image
-        run:
+        run: |
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/minecraft
           TAG=$(date +%s)
 
