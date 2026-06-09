@@ -29,7 +29,7 @@ jobs:
 
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
-          
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
@@ -39,12 +39,19 @@ jobs:
       - name: Add host key
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-          
+
       - name: Create directory
         run: |
           ssh ubuntu@${{ secrets.SERVER_IP }} '
             sudo mkdir /opt/minecraft
           '
+
+      - name: Fix permissions
+        run: |
+          ssh ubuntu@${{ secrets.SERVER_IP }} '
+            sudo chown -R ubuntu:ubuntu /opt/minecraft
+          '
+
       - name: Copy compose file
         run: |
           scp docker-compose.yml \
