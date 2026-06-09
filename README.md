@@ -11,6 +11,7 @@
 ``` bash
 docker build -f Dockerfile -t image:tag .
 ```
+
 ### Starting
 
 #### Option 1: Docker run
