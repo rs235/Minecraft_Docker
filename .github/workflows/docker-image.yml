@@ -29,7 +29,14 @@ jobs:
 
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
+                    
+  deploy:
+  
+    needs: build
+    runs-on: ubuntu-latest
 
+    steps:
+    
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
@@ -40,26 +47,11 @@ jobs:
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Create directory
-        run: |
-          ssh ubuntu@${{ secrets.SERVER_IP }} '
-            sudo mkdir /opt/minecraft
-          '
-
-      - name: Fix permissions
-        run: |
-          ssh ubuntu@${{ secrets.SERVER_IP }} '
-            sudo chown -R ubuntu:ubuntu /opt/minecraft
-          '
-
-      - name: Copy compose file
-        run: |
-          scp docker-compose.yml \
-            ubuntu@${{ secrets.SERVER_IP }}:/opt/minecraft/
-
       - name: Deploy
         run: |
           ssh ubuntu@${{ secrets.SERVER_IP }} '
-            sudo docker pull rs235/minecraft:latest
-            sudo docker compose -f /opt/minecraft/docker-compose.yml up -d
+            mkdir -p /home/ubuntu/minecraft
+            cd /home/ubuntu/minecraft
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/minecraft:latest
+            docker compose up -d
           '
