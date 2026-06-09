@@ -22,4 +22,4 @@ RUN chmod +x /eula.sh
 
 ENTRYPOINT ["/eula.sh"]
 
-# CMD ["java", "-Xmx4G", "-Xms4G", "-jar", "/opt/minecraft/server.jar", "nogui"]
+# CMD is located in eula.sh that ENTRYPOINT points to.
