@@ -7,15 +7,15 @@
 
 ### Building
 
-###### Adjust server parameters in start.sh if needed, then run:
+##### Adjust server parameters in start.sh if needed, then run:
 ``` bash
 docker build -f Dockerfile -t image:tag .
 ```
 ### Starting
 
-#### Docker run
+#### Option 1: Docker run
 
-###### Docker run command
+##### Example docker run command
 ``` bash
 docker run \
 -it \ # Interactive mode to see and interact with server console.
@@ -26,23 +26,20 @@ docker run \
 image:tag # Name and tag of the built Docker image.
 ```
 
-#### Docker compose
+#### Option 2: Docker compose
 
-docker-compose.yml file depends on a local .env file to:
+Docker Compose depends on a local .env file to:
  - Accept EULA
  - Select an image
  - Set bind mount directory for server data
 
-.env file template:
+##### .env file template:
 ```
 MINECRAFT_DATA=/absolute/path/to/server/data/location/on/your/machine
 MINECRAFT_IMAGE=image:tag
 ```
 
-Start your server with a standard
+##### Start your server with a standard
 ``` bash
 docker compose up
 ```
-
-
-Enjoy.
