@@ -56,6 +56,11 @@ jobs:
       - name: List files
         run: ls -R
 
+      - name: Debug workspace
+        run: |
+          pwd
+          ls -la
+
       - name: Copy compose file
         run: |
           scp ./docker-compose.yml \
