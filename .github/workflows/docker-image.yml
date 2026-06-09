@@ -43,7 +43,7 @@ jobs:
       - name: Create directory
         run: |
           ssh ubuntu@${{ secrets.SERVER_IP }} '
-            mkdir /opt/minecraft
+            sudo mkdir /opt/minecraft
           '
       - name: Copy compose file
         run: |
@@ -53,6 +53,6 @@ jobs:
       - name: Deploy
         run: |
           ssh ubuntu@${{ secrets.SERVER_IP }} '
-            docker pull rs235/minecraft:latest
-            docker compose -f /opt/minecraft/docker-compose.yml up -d
+            sudo docker pull rs235/minecraft:latest
+            sudo docker compose -f /opt/minecraft/docker-compose.yml up -d
           '
