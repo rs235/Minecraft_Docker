@@ -55,7 +55,7 @@ jobs:
 
       - name: Copy compose file
         run: |
-          scp docker-compose.yml \
+          scp ./docker-compose.yml \
             ubuntu@${{ secrets.SERVER_IP }}:/home/ubuntu/minecraft/
 
       - name: Deploy
