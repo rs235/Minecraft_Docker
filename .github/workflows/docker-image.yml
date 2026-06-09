@@ -70,10 +70,9 @@ jobs:
       - name: Deploy
         run: |
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/minecraft
-          TAG=$(date +%s)
           
           ssh ubuntu@${{ secrets.SERVER_IP }} '
             cd /home/ubuntu/minecraft
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:latest
+            docker pull $IMAGE_NAME:latest
             docker compose up -d
           '
