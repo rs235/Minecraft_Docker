@@ -53,6 +53,9 @@ jobs:
             mkdir -p /home/ubuntu/minecraft
           '
 
+      - name: List files
+        run: ls -R
+
       - name: Copy compose file
         run: |
           scp ./docker-compose.yml \
