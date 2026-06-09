@@ -29,3 +29,30 @@ jobs:
 
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
+          
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Add host key
+        run: |
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          
+      - name: Create directory
+        run: |
+          ssh ubuntu@${{ secrets.SERVER_IP }} '
+            mkdir /opt/minecraft
+          '
+      - name: Copy compose file
+        run: |
+          scp docker-compose.yml \
+            ubuntu@${{ secrets.SERVER_IP }}:/opt/minecraft/
+
+      - name: Deploy
+        run: |
+          ssh ubuntu@${{ secrets.SERVER_IP }} '
+            docker pull rs235/minecraft:latest
+            docker compose -f /opt/minecraft/docker-compose.yml up -d
+          '
