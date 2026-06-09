@@ -44,3 +44,7 @@ MINECRAFT_IMAGE=image:tag
 ``` bash
 docker compose up
 ```
+
+
+### To do: 
+1. Stop baking the jar file into the image and download it when starting the container instead.
