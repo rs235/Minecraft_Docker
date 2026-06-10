@@ -3,7 +3,7 @@
 1. Downloads newest server jar file automatically.
 2. Sets EULA based on provided environmental variable.
 3. Bind mounts local directory for easy access to your Minecraft worlds. Can be replaced with a named volume if no easy access is required.
-4. Starts server with `-Xmx4G -Xms4G -jar server.jar nogui` parameters. Those can be adjusted inside of start.sh file.
+4. Starts server with `-Xmx4G -Xms4G -jar server.jar nogui` java parameters. Those can be adjusted inside of start.sh file.
 
 ### Building
 
