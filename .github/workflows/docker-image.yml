@@ -29,15 +29,15 @@ jobs:
 
           docker push $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:latest
-                    
+
   deploy:
-  
+
     needs: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
@@ -53,14 +53,6 @@ jobs:
           ssh ubuntu@${{ secrets.SERVER_IP }} '
             mkdir -p /home/ubuntu/minecraft
           '
-
-      - name: List files
-        run: ls -R
-
-      - name: Debug workspace
-        run: |
-          pwd
-          ls -la
 
       - name: Copy compose file
         run: |
